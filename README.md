@@ -1,4 +1,4 @@
-# Software-Engineering-2019-20
+# Ingegneria-del-Software 2019-2020
 <b> Indirizzi email:</b>
 - <b>Domenico Bonali</b>, domenico.bonali@student.univaq.it;
 - <b>Daniele Di Desidero</b>, daniele.desidero@student.univaq.it;
