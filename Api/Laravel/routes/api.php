@@ -17,58 +17,61 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->groups (function() {
+
 // Università
-Route::get('api.fred.it/università/view', 'Università@getUniversità');
-Route::post('api.fred.it/università/insert', 'Università@setUniversità');
-Route::put('api.fred.it/università/edit', 'Università@editUniversità');
+Route::get('api.fred.it/universities', 'University_controller@getUniversity');
+Route::post('api.fred.it/universities', 'University_controller@setUniversity');
+Route::put('api.fred.it/universities', 'University_controller@editUniversity');
 
 // Dipartimenti
-Route::get('api.fred.it/dipartimenti/view', 'Dipartimento@getDipartimenti');
-Route::post('api.fred.it/dipartimenti/insert', 'Dipartimento@setDipartimento');
-Route::put('api.fred.it/dipartimenti/edit', 'Dipartimento@editDipartimento');
-Route::delete('api.fred.it/dipartimenti/delete', 'Dipartimento@deleteDipartimento');
+Route::get('api.fred.it/departments', 'Department_controller@getDepartiments');
+Route::post('api.fred.it/dpartments', 'Department_controller@setDepartment');
+Route::put('api.fred.it/departments/:id', 'Department_controller@editDepartiment');
+Route::delete('api.fred.it/departments/:id', 'Department_controller@deleteDepartment');
 
 // Docenti
-Route::get('api.fred.it/docenti/view', 'Docente@getDocenti');
-Route::post('api.fred.it/docenti/inset', 'Docente@setDocente');
-Route::put('api.fred.it/docenti/edit', 'Docente@editDocente');
-Route::get('api.fred.it/docenti/:id/prenotazioni', 'Docente@getMyPrenotazioni');
+Route::get('api.fred.it/teachers', 'Teacher_controller@getTeachers');
+Route::post('api.fred.it/teachers', 'Teacher_controller@setTeacher');
+Route::put('api.fred.it/teachers/:id', 'Teacher_controller@editTeacher');
+Route::get('api.fred.it/teachers/:id/bookings', 'Teacher_controller@myBookings');
 
 // Studenti
-Route::get('api.fred.it/studenti/view', 'Studente@getStudenti');
-Route::post('api.fred.it/studenti/insert', 'Studente@setStudente');
-Route::put('api.fred.it/studenti/edit', 'Studente@editStudente');
-Route::delete('api.fred.it/studenti/delete', 'Studente@deleteStudente');
-Route::get('api.fred.it/studenti/:id/prenotazioni', 'Studente@getMyPrenotazioni');
+Route::get('api.fred.it/students', 'Student_controller@getStudents');
+Route::post('api.fred.it/students', 'Student_controller@setStudent');
+Route::put('api.fred.it/students/:id', 'Student_controller@editStudent');
+Route::delete('api.fred.it/students/:id', 'Student_controller@deleteStudent');
+Route::get('api.fred.it/students/:id/bookings', 'Student_controller@myBookings');
 
 // Materie
-Route::get('api.fred.it/materie/view', 'Materia@getMaterie');
-Route::post('api.fred.it/materie/insert', 'Materia@setMateria');
-Route::put('api.fred.it/materie/edit', 'Materia@editMateria');
+Route::get('api.fred.it/subjects', 'Subject_controller@getSubjects');
+Route::post('api.fred.it/subjects', 'Subject_controller@setSubject');
+Route::put('api.fred.it/subjects', 'Subject_controller@editSubject');
 
 // Presenze
-Route::get('api.fred.it/presenze/view', 'Presenza@getPresenze');
-Route::post('api.fred.it/presenze/insert', 'Presenza@setPresenza');
+Route::get('api.fred.it/attendances', 'Attendance_controller@getAttendances');
+Route::post('api.fred.it/attendances', 'Attendance_controller@setAttendance');
 
 // Insegnare
-Route::get('api.fred.it/insegnamenti/view', 'Insegnare@getInsegnamenti');
-Route::post('api.fred.it/insegnamenti/insert', 'Insegnare@setInsegnamento');
-Route::put('api.fred.it/insegnamenti/edit', 'Insegnare@editInsegnamento');
+Route::get('api.fred.it/teachings', 'Teaching_controller@getTeachings');
+Route::post('api.fred.it/teachings', 'Teaching_controller@setTeaching');
+Route::put('api.fred.it/teachings/:id', 'Teaching_controller@editTeaching');
 
 // Prenotazioni Docenti
-Route::get('api.fred.it/prenotazioni_docenti/view', 'Prenotazione_docente@getPrenDocenti');
-Route::post('api.fred.it/prenotazioni_docenti/insert', 'Prenotazione_docente@setPrenDocente');
-Route::put('api.fred.it/prenotazioni_docenti/edit', 'Prenotazione_docente@editPrenDocente');
-Route::delete('api.fred.it/prenotazioni_docenti/delete', 'Prenotazione_docente@deletePrenDocente');
+Route::get('api.fred.it/teachers_bookings', 'Teacher_bookings_controller@getTeacherBooking');
+Route::post('api.fred.it/teachers_bookings', 'Teacher_bookings_controller@setTeacherBooking');
+Route::put('api.fred.it/teachers_bookings/:id', 'Teacher_bookings_controller@editTeacherBooking');
+Route::delete('api.fred.it/teachers_bookings/:id', 'Teacher_bookings_controller@deleteTeacherBooking');
 
 // Prenotazioni Studenti
-Route::get('api.fred.it/prenotazioni_studenti/view', 'Prenotazioni_studente@getPrenStudenti');
-Route::post('api.fred.it/prenotazioni_studenti/insert', 'Prenotazioni_studente@getPrenStudente');
-Route::put('api.fred.it/prenotazioni_studenti/edit', 'Prenotazioni_studente@getPrenStudente');
-Route::delete('api.fred.it/prenotazioni_studenti/delete', 'Prenotazioni_studente@getPrenStudente');
+Route::get('api.fred.it/students_bookings', 'Student_bookings_controller@getStudentBookings');
+Route::post('api.fred.it/students_bookings', 'Student_bookings_controller@getStudentBooking');
+Route::put('api.fred.it/students_bookings/:id', 'Student_bookings_controller@getStudentBooking');
+Route::delete('api.fred.it/students_bookings/:id', 'Student_bookings_controller@getStudentBooking');
 
 // Aule
-Route::get('api.fred.it/aule/view', 'Aula@getAule');
-Route::post('api.fred.it/aule/insert', 'Aula@setAula');
-Route::put('api.fred.it/aule/edit', 'Aula@editAula');
-Route::delete('api.fred.it/aule/delete', 'Aula@deleteAula');
+Route::get('api.fred.it/rooms', 'Room_controller@getRooms');
+Route::post('api.fred.it/rooms', 'Room_controller@setRoom');
+Route::put('api.fred.it/rooms/:id', 'Room_controller@editRoom');
+Route::delete('api.fred.it/rooms/:id', 'Room_controller@deleteRoom');
+});
