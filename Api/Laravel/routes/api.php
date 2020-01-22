@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->groups (function() {
+//Route::middleware('auth:api')->groups (function() {
 
 // Università
 Route::get('api.fred.it/universities', 'University_controller@getUniversity');
@@ -74,4 +74,4 @@ Route::get('api.fred.it/rooms', 'Room_controller@getRooms');
 Route::post('api.fred.it/rooms', 'Room_controller@setRoom');
 Route::put('api.fred.it/rooms/:id', 'Room_controller@editRoom');
 Route::delete('api.fred.it/rooms/:id', 'Room_controller@deleteRoom');
-});
+//});
