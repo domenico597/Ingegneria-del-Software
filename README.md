@@ -6,7 +6,7 @@
 
 ## Progetto 2. Gestionale per l’occupazione delle aule e delle stanze di studio e lavoro
 - <b>Deliverable 1(22/12/2019) in  Old version;</b>
-- <b>Milestone 2(18/01/2020)  in Old version/Milestone2;</b>
+- <b>Milestone 2(18/01/2020)  in Old version</b>
 - <b>Deliverable finale(13/02/2020) nella root;</b>
 
 ### Link utili:
