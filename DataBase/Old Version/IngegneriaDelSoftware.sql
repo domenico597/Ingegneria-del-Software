@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 11, 2020 at 12:02 PM
+-- Generation Time: Dec 17, 2019 at 03:09 PM
 -- Server version: 5.7.26
--- PHP Version: 7.3.8
+-- PHP Version: 7.2.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,6 +28,7 @@ USE `IngegneriaDelSoftware`;
 -- Table structure for table `Aula`
 --
 
+DROP TABLE IF EXISTS `Aula`;
 CREATE TABLE IF NOT EXISTS `Aula` (
   `ID_Aula` int(11) NOT NULL AUTO_INCREMENT,
   `Codice_Aula` varchar(50) NOT NULL,
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `Aula` (
 -- Table structure for table `Dipartimento`
 --
 
+DROP TABLE IF EXISTS `Dipartimento`;
 CREATE TABLE IF NOT EXISTS `Dipartimento` (
   `Dipartimento` int(5) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(70) NOT NULL,
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `Dipartimento` (
 -- Table structure for table `Docente`
 --
 
+DROP TABLE IF EXISTS `Docente`;
 CREATE TABLE IF NOT EXISTS `Docente` (
   `ID_Docente` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(25) NOT NULL,
@@ -80,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `Docente` (
 -- Table structure for table `Insegnare`
 --
 
+DROP TABLE IF EXISTS `Insegnare`;
 CREATE TABLE IF NOT EXISTS `Insegnare` (
   `ID_Insegnamento` int(11) NOT NULL AUTO_INCREMENT,
   `Materia` int(11) NOT NULL,
@@ -95,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `Insegnare` (
 -- Table structure for table `Iscrizione`
 --
 
+DROP TABLE IF EXISTS `Iscrizione`;
 CREATE TABLE IF NOT EXISTS `Iscrizione` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Materia` int(11) NOT NULL,
@@ -110,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `Iscrizione` (
 -- Table structure for table `Materia`
 --
 
+DROP TABLE IF EXISTS `Materia`;
 CREATE TABLE IF NOT EXISTS `Materia` (
   `ID_Materia` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(50) NOT NULL,
@@ -124,6 +130,7 @@ CREATE TABLE IF NOT EXISTS `Materia` (
 -- Table structure for table `Posto`
 --
 
+DROP TABLE IF EXISTS `Posto`;
 CREATE TABLE IF NOT EXISTS `Posto` (
   `ID_Posto` int(5) NOT NULL AUTO_INCREMENT,
   `Numero_posto` int(11) NOT NULL,
@@ -138,6 +145,7 @@ CREATE TABLE IF NOT EXISTS `Posto` (
 -- Table structure for table `Prenotazione_Docente`
 --
 
+DROP TABLE IF EXISTS `Prenotazione_Docente`;
 CREATE TABLE IF NOT EXISTS `Prenotazione_Docente` (
   `ID_Prenotazione_Lezione` int(11) NOT NULL AUTO_INCREMENT,
   `Docente` int(11) NOT NULL,
@@ -157,6 +165,7 @@ CREATE TABLE IF NOT EXISTS `Prenotazione_Docente` (
 -- Table structure for table `Prenotazione_studente`
 --
 
+DROP TABLE IF EXISTS `Prenotazione_studente`;
 CREATE TABLE IF NOT EXISTS `Prenotazione_studente` (
   `ID_Prenotazione` int(5) NOT NULL AUTO_INCREMENT,
   `Posto` int(11) NOT NULL,
@@ -174,6 +183,7 @@ CREATE TABLE IF NOT EXISTS `Prenotazione_studente` (
 -- Table structure for table `Presenza`
 --
 
+DROP TABLE IF EXISTS `Presenza`;
 CREATE TABLE IF NOT EXISTS `Presenza` (
   `ID_Presenza` int(5) NOT NULL AUTO_INCREMENT,
   `ID_Studente` int(11) NOT NULL,
@@ -186,27 +196,10 @@ CREATE TABLE IF NOT EXISTS `Presenza` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Segnalazioni`
---
-
-CREATE TABLE IF NOT EXISTS `Segnalazioni` (
-  `ID_Segnalazione` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_Utente` int(11) NOT NULL,
-  `ID_Aula` int(11) NOT NULL,
-  `Tipologia_Utente` varchar(10) NOT NULL,
-  `Descrizione` text NOT NULL,
-  PRIMARY KEY (`ID_Segnalazione`),
-  UNIQUE KEY `ID_Segnalazione` (`ID_Segnalazione`),
-  KEY `ID_Aula` (`ID_Aula`),
-  KEY `ID_Utente` (`ID_Utente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Studente`
 --
 
+DROP TABLE IF EXISTS `Studente`;
 CREATE TABLE IF NOT EXISTS `Studente` (
   `ID_Studente` int(11) NOT NULL AUTO_INCREMENT,
   `Matricola` int(11) NOT NULL,
@@ -224,6 +217,7 @@ CREATE TABLE IF NOT EXISTS `Studente` (
 -- Table structure for table `Universita`
 --
 
+DROP TABLE IF EXISTS `Universita`;
 CREATE TABLE IF NOT EXISTS `Universita` (
   `ID_uni` int(5) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(50) NOT NULL,
@@ -288,13 +282,6 @@ ALTER TABLE `Prenotazione_studente`
 ALTER TABLE `Presenza`
   ADD CONSTRAINT `presenza_ibfk_1` FOREIGN KEY (`ID_Studente`) REFERENCES `Studente` (`ID_Studente`),
   ADD CONSTRAINT `presenza_ibfk_2` FOREIGN KEY (`ID_Prenotazione_Lezione`) REFERENCES `Prenotazione_Docente` (`ID_Prenotazione_Lezione`);
-
---
--- Constraints for table `Segnalazioni`
---
-ALTER TABLE `Segnalazioni`
-  ADD CONSTRAINT `segnalazioni_ibfk_1` FOREIGN KEY (`ID_Aula`) REFERENCES `Aula` (`ID_Aula`),
-  ADD CONSTRAINT `segnalazioni_ibfk_2` FOREIGN KEY (`ID_Utente`) REFERENCES `Studente` (`ID_Studente`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
