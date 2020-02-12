@@ -12,3 +12,4 @@
 ### Link utili:
 - <b><a href="https://docs.google.com/document/d/1U_orxRzSNlbc-sr5YID0n7gGACt6IFC-9OyZQUtusTI/edit?usp=sharing">Link documentazione:</a></b> 
 - <b><a href="https://documenter.getpostman.com/view/9362255/SWLYAqLn?version=latest">Link API di Postman:</a></b>
+- <b><a href="https://docs.google.com/document/d/1SFI6-UimPnbn7WMVtVurta3cljxRD4JyNOeC0VWuJFQ/edit?usp=sharing">Link file diff</a></b>
