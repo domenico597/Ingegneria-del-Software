@@ -15,6 +15,7 @@ class AddForeignKeysToPrenotazioneStudenteTable extends Migration {
 		Schema::table('Prenotazione_studente', function(Blueprint $table)
 		{
 			$table->foreign('Studente', 'prenotazione_studente_ibfk_1')->references('ID_Studente')->on('Studente')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+			$table->foreign('Posto', 'prenotazione_studente_ibfk_2')->references('ID_Posto')->on('Posto')->onUpdate('RESTRICT')->onDelete('RESTRICT');
 		});
 	}
 
@@ -29,6 +30,7 @@ class AddForeignKeysToPrenotazioneStudenteTable extends Migration {
 		Schema::table('Prenotazione_studente', function(Blueprint $table)
 		{
 			$table->dropForeign('prenotazione_studente_ibfk_1');
+			$table->dropForeign('prenotazione_studente_ibfk_2');
 		});
 	}
 

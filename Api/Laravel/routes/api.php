@@ -22,26 +22,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Università
 Route::get('universities', 'University_controller@getUniversity');
 Route::post('universities', 'University_controller@setUniversity');
-Route::put('universities', 'University_controller@editUniversity');
+Route::put('universities/{id}', 'University_controller@editUniversity');
 
 // Dipartimenti
 Route::get('departments', 'Department_controller@getDepartiments');
-Route::post('dpartments', 'Department_controller@setDepartment');
-Route::put('departments/:id', 'Department_controller@editDepartiment');
-Route::delete('departments/:id', 'Department_controller@deleteDepartment');
+Route::post('departments', 'Department_controller@setDepartment');
+Route::put('departments/{id}', 'Department_controller@editDepartiment');
+Route::delete('departments/{id}', 'Department_controller@deleteDepartment');
 
 // Docenti
 Route::get('teachers', 'Teacher_controller@getTeachers');
 Route::post('teachers', 'Teacher_controller@setTeacher');
-Route::put('teachers/:id', 'Teacher_controller@editTeacher');
-Route::get('teachers/:id/bookings', 'Teacher_controller@myBookings');
+Route::put('teachers/{id}', 'Teacher_controller@editTeacher');
+Route::get('teachers/{id}/bookings', 'Teacher_controller@myBookings');
 
 // Studenti
 Route::get('students', 'Student_controller@getStudents');
 Route::post('students', 'Student_controller@setStudent');
-Route::put('students/:id', 'Student_controller@editStudent');
-Route::delete('students/:id', 'Student_controller@deleteStudent');
-Route::get('students/:id/bookings', 'Student_controller@myBookings');
+Route::put('students/{id}', 'Student_controller@editStudent');
+Route::delete('students/{id}', 'Student_controller@deleteStudent');
+Route::get('students/{id}/bookings', 'Student_controller@myBookings');
 
 // Materie
 Route::get('subjects', 'Subject_controller@getSubjects');
@@ -55,23 +55,27 @@ Route::post('attendances', 'Attendance_controller@setAttendance');
 // Insegnare
 Route::get('teachings', 'Teaching_controller@getTeachings');
 Route::post('teachings', 'Teaching_controller@setTeaching');
-Route::put('teachings/:id', 'Teaching_controller@editTeaching');
+Route::put('teachings/{id}', 'Teaching_controller@editTeaching');
 
 // Prenotazioni Docenti
 Route::get('teachers_bookings', 'Teacher_bookings_controller@getTeacherBooking');
 Route::post('teachers_bookings', 'Teacher_bookings_controller@setTeacherBooking');
-Route::put('teachers_bookings/:id', 'Teacher_bookings_controller@editTeacherBooking');
-Route::delete('teachers_bookings/:id', 'Teacher_bookings_controller@deleteTeacherBooking');
+Route::put('teachers_bookings/{id}', 'Teacher_bookings_controller@editTeacherBooking');
+Route::delete('teachers_bookings/{id}', 'Teacher_bookings_controller@deleteTeacherBooking');
 
 // Prenotazioni Studenti
 Route::get('students_bookings', 'Student_bookings_controller@getStudentBookings');
-Route::post('students_bookings', 'Student_bookings_controller@getStudentBooking');
-Route::put('students_bookings/:id', 'Student_bookings_controller@getStudentBooking');
-Route::delete('students_bookings/:id', 'Student_bookings_controller@getStudentBooking');
+Route::post('students_bookings', 'Student_bookings_controller@setStudentBooking');
+Route::put('students_bookings/{id}', 'Student_bookings_controller@editStudentBooking');
+Route::delete('students_bookings/{id}', 'Student_bookings_controller@deleteStudentBooking');
+
 
 // Aule
 Route::get('rooms', 'Room_controller@getRooms');
 Route::post('rooms', 'Room_controller@setRoom');
-Route::put('rooms/:id', 'Room_controller@editRoom');
-Route::delete('rooms/:id', 'Room_controller@deleteRoom');
+Route::put('rooms/{id}', 'Room_controller@editRoom');
+Route::delete('rooms/{id}', 'Room_controller@deleteRoom');
+Route::get('rooms/{id}', 'Room_controller@getRoom');
+Route::get('rooms/{name}', 'Room_controller@getRoomByName');
+
 //});

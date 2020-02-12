@@ -15,7 +15,7 @@ class CreatePrenotazioneStudenteTable extends Migration {
 		Schema::create('Prenotazione_studente', function(Blueprint $table)
 		{
 			$table->integer('ID_Prenotazione', true);
-			$table->integer('Posto');
+			$table->integer('Posto')->index('Posto');
 			$table->integer('Studente');
 			$table->dateTime('Data_Ora');
 			$table->date('Data_prenotata');
