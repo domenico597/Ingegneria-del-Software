@@ -1,8 +1,8 @@
 # Ingegneria-del-Software 2019-2020
 <b> Indirizzi email:</b>
-- <b>Domenico Bonali</b>, domenico.bonali@student.univaq.it;
-- <b>Daniele Di Desidero</b>, daniele.desidero@student.univaq.it;
-- <b>Francesca Santoferrara</b>, francesca.santoferrara@student.univaq.it;
+- <b>Domenico Bonali</b>, 254023 ,domenico.bonali@student.univaq.it;
+- <b>Daniele Di Desidero</b>, 251850 ,daniele.desidero@student.univaq.it;
+- <b>Francesca Santoferrara</b>, 252167 ,francesca.santoferrara@student.univaq.it;
 
 ## Progetto 2. Gestionale per l’occupazione delle aule e delle stanze di studio e lavoro
 - <b>Deliverable 1(22/12/2019) in  Old version;</b>
