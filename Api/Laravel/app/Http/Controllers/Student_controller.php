@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Studente;
+use App\PrenStud;
 
 class Student_controller extends Controller
 {
@@ -32,7 +33,6 @@ class Student_controller extends Controller
             $student->Corso = $request->course;
             $student->Password = $request->password;
             $student->save();
-
             return response()->json(["message" => "Studente aggiornato"], 200);
         }
         else {
@@ -40,11 +40,10 @@ class Student_controller extends Controller
         }
     }
 
-    public function deleteStudent() {
+    public function deleteStudent($id) {
         if (Studente::where('ID_Studente', $id)->exists()) {
             $student = Studente::find($id);
             $student->delete();
-
             return response()->json(["message" => "Studente eliminato"], 200);
         }
         else {
@@ -52,7 +51,13 @@ class Student_controller extends Controller
         }
     }
 
-    public function myBookings() {
-        
+    public function myBookings($id) {
+        if (Studente::where('ID_Studente', $id)->exists()) {
+            $student = PrenStud::where('Studente', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($student, 200);
+        }
+        else {
+            return response()->json(['message' => 'Studente non trovato'], 404);
+        }
     }
 }

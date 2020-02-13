@@ -20,7 +20,7 @@ class Student_bookings_controller extends Controller
         $pren->Orario_prenotato = $request->booked_time;
         $pren->Data_ora = $request->date;
         $pren->save();
-
+        //return "Prenotazione effettuata";
         return response()->json(["message" => 'Prenotazione Effettuata'], 201);
     }
 
@@ -31,7 +31,6 @@ class Student_bookings_controller extends Controller
             $pren->Data_prenotata = $request->booked_date;
             $pren->Orario_prenotato = $request->booked_time;
             $pren->save();
-
             return response()->json(["message" => 'Prenotazione modificata correttamente'], 200);
         }
         else {
@@ -43,7 +42,6 @@ class Student_bookings_controller extends Controller
         if (PrenStud::where('Id_Prenotazione', $id)->exists()) {
             $pren = PrenStud::find($id);
             $pren->delete();
-
             return response()->json(["message" => 'Prenotazione rimossa']);
         }
         else {

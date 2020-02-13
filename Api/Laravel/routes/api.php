@@ -25,9 +25,9 @@ Route::post('universities', 'University_controller@setUniversity');
 Route::put('universities/{id}', 'University_controller@editUniversity');
 
 // Dipartimenti
-Route::get('departments', 'Department_controller@getDepartiments');
+Route::get('departments', 'Department_controller@getDepartments');
 Route::post('departments', 'Department_controller@setDepartment');
-Route::put('departments/{id}', 'Department_controller@editDepartiment');
+Route::put('departments/{id}', 'Department_controller@editDepartment');
 Route::delete('departments/{id}', 'Department_controller@deleteDepartment');
 
 // Docenti
@@ -46,7 +46,7 @@ Route::get('students/{id}/bookings', 'Student_controller@myBookings');
 // Materie
 Route::get('subjects', 'Subject_controller@getSubjects');
 Route::post('subjects', 'Subject_controller@setSubject');
-Route::put('subjects', 'Subject_controller@editSubject');
+Route::put('subjects/{id}', 'Subject_controller@editSubject');
 
 // Presenze
 Route::get('attendances', 'Attendance_controller@getAttendances');
@@ -58,7 +58,7 @@ Route::post('teachings', 'Teaching_controller@setTeaching');
 Route::put('teachings/{id}', 'Teaching_controller@editTeaching');
 
 // Prenotazioni Docenti
-Route::get('teachers_bookings', 'Teacher_bookings_controller@getTeacherBooking');
+Route::get('teachers_bookings', 'Teacher_bookings_controller@getTeacherBookings');
 Route::post('teachers_bookings', 'Teacher_bookings_controller@setTeacherBooking');
 Route::put('teachers_bookings/{id}', 'Teacher_bookings_controller@editTeacherBooking');
 Route::delete('teachers_bookings/{id}', 'Teacher_bookings_controller@deleteTeacherBooking');
@@ -76,6 +76,18 @@ Route::post('rooms', 'Room_controller@setRoom');
 Route::put('rooms/{id}', 'Room_controller@editRoom');
 Route::delete('rooms/{id}', 'Room_controller@deleteRoom');
 Route::get('rooms/{id}', 'Room_controller@getRoom');
-Route::get('rooms/{name}', 'Room_controller@getRoomByName');
+Route::get('rooms/{department}/departments', 'Room_controller@getRoomsByDepartment');
+
+//Posto
+Route::get('places', 'Place_controller@getPlaces');
+Route::post('places', 'Place_controller@setPlace');
+Route::put('places/{id}', 'Place_controller@editPlace');
+Route::delete('places/{id}', 'Place_controller@deletePlace');
+
+//Segnalazioni
+Route::get('reports', 'Report_controller@getReports');
+Route::post('reports', 'Report_controller@setReport');
+Route::put('reports/{id}', 'Report_controller@editReport');
+Route::delete('reports/{id}', 'Report_controller@deleteReport');
 
 //});
