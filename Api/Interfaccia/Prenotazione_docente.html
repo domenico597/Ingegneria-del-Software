@@ -1,0 +1,118 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+<script src="formToJson.js"></script>
+<script>
+    /*$(document).ready(function() {
+        var settings = {
+            "url": "http://localhost:8000/api/teachers",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "datatype": "json"
+        };
+        $.ajax(settings).done(function (response) {
+            var jsonObj = JSON.parse(response);
+            console.log(jsonObj);
+            jsonObj.forEach(element => {
+                $
+            });
+        }); 
+    });
+    */
+    
+    function subfunc() {
+        var value = [{"Posto": $("#place").val(),
+                    "Studente": $("#student").val(),
+                    "DataPrenotata": $("#booked_date").val(), 
+                    "OraPrenotata": $("#booked_time").val(),
+                    "Data": $("#cur_date").val()}];
+        //$("#booked_time").val();
+
+        //console.log(value);
+        
+    
+        var form = new FormData();
+        form.append("place", value[0].Posto);
+        form.append("student", value[0].Studente);
+        form.append("booked_date", value[0].DataPrenotata);
+        form.append("booked_time", value[0].OraPrenotata);
+        form.append("date", value[0].Data);
+    
+        //var form = $("#myFrom").serializeArray();
+        console.log('form:'+form);
+        var f = JSON.stringify($("#myForm").formToJson());
+        console.log(f);
+    
+        var settings = {
+            "url": "http://localhost:8000/api/students_bookings",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": f
+        };
+
+        $.ajax(settings).done(function (response) {
+        console.log('response'+response);
+        });
+    }
+</script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenotazione Studente</title>
+</head>
+<body>
+    <center>
+        <font size=22 color="red">Prenotazione studente</font>
+        <form id="myForm" method="POST" onsubmit="subfunc(); return false;">
+            <table>
+                
+                <tr>
+                    <td>Materia</td>
+                    <td>
+                        <select id="place" name="place">
+                            
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Studente</td>
+                    <td>
+                        <select id="student" name="student">
+                            <!--
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="4">4</option>
+                            -->
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Data da prenotare</td>
+                    <td><input type="date" id="booked_date" name="booked_date"></td>
+                </tr>
+                <tr>
+                    <td>Ora da prenotare</td>
+                    <td><input type="time" id="booked_time" name="booked_time"></td>
+                </tr>
+                <tr>
+                    <td>Data prenotazione</td>
+                    <td><input type="date" id="date" name="date"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Prenota"></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>

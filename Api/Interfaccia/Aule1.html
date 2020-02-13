@@ -1,0 +1,51 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function() {
+        var settings = {
+            "url": "http://localhost:8000/api/rooms",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "datatype": "json"
+        };
+        $.ajax(settings).done(function (response) {
+            var jsonObj = JSON.parse(response);
+            console.log(jsonObj);
+            jsonObj.forEach(element => {
+                $("#table").append(
+                        "<tr>"
+                            +"<td>"+element.Codice_Aula+"</td>"
+                            +"<td>"+element.Descrizione+"</td>"
+                            +"<td>"+element.Edificio+"</td>"
+                        +"</tr>"
+                );    
+            });
+        });
+    });
+</script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aule</title>
+</head>
+<body>
+    <center>
+        <font size=22 color="red">Lista Aule</font>
+            <table id="table" border=1 align="center">
+                <tr>
+                    <td>Codice Aula</td>
+                    <td>Descrizione</td>
+                    <td>Edificio</td>
+                </tr>
+            </table>
+    </center>
+</body>
+</html>
