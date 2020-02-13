@@ -4,9 +4,12 @@
   crossorigin="anonymous">
 </script>
 <script>
+
+    var id=location.search.split('dipartimento=')[1];
+
     $(document).ready(function() {
         var settings = {
-            "url": "http://localhost:8000/api/rooms",
+            "url": "http://localhost:8000/api/rooms/"+id+"/departments",
             "method": "GET",
             "timeout": 0,
             "headers": {
@@ -18,15 +21,30 @@
             var jsonObj = JSON.parse(response);
             console.log(jsonObj);
             jsonObj.forEach(element => {
+                var ris=element.Riservato_stud;
+                if(ris==0){
                 $("#table").append(
                         "<tr>"
                             +"<td>"+element.Codice_Aula+"</td>"
                             +"<td>"+element.Descrizione+"</td>"
                             +"<td>"+element.Edificio+"</td>"
-                        +"</tr>"
-                );    
+                            +"<td>"+"<input type=\"radio\" name=\"scelta\" value=\""+element.ID_Aula+"\""+"</td>"
+                            +"</tr>"
+                );
+                }    
             });
+
+            $("#table").append(
+                        "<tr>"
+                            +"<td>"+"</td>"
+                            +"<td>"+"</td>"
+                            +"<td>"+"</td>"
+                            +"<td>"+"<input type=\"submit\""+"</td>"
+                            +"</tr>"
+                );
+
         });
+    
     });
 </script> 
 <!DOCTYPE html>
@@ -39,13 +57,16 @@
 <body>
     <center>
         <font size=22 color="red">Lista Aule</font>
+        <form action="Aula.html" name="aula" id="aula" method="GET">
             <table id="table" border=1 align="center">
                 <tr>
                     <td>Codice Aula</td>
                     <td>Descrizione</td>
                     <td>Edificio</td>
+                    <td></td>
                 </tr>
             </table>
+        </form>
     </center>
 </body>
 </html>

@@ -1,0 +1,168 @@
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+</script>
+<script src="formToJson.js"></script>
+<script>
+
+    var id=location.search.split('scelta=')[1];
+
+    $(document).ready(function() {
+        
+        var settings = {
+            "url": "http://localhost:8000/api/rooms/"+id,
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "datatype": "json"
+        };
+        $.ajax(settings).done(function (response) {
+            var jsonObj = JSON.parse(response);
+            console.log(jsonObj);
+            
+           
+            jsonObj.forEach(element => {
+                var ris= element.Riservato_stud;
+                if(ris==0){
+                $("#table").append(
+                        "<tr>"
+                            +"<td>"+element.Codice_Aula+"</td>"
+                            +"<td>"+element.Descrizione+"</td>"
+                            +"<td>"+element.Indirizzo+"</td>"
+                            +"<td>"+element.Edificio+"</td>"
+                            +"<td>"+element.Piano+"</td>"
+                            +"<td>"+element.Numero_posti+"</td>"
+                        +"</tr>"
+                );
+            }    
+            });
+            
+        });
+    });
+
+
+
+    
+    function subfunc() {
+        var value = [{"Docente": "1",
+                    "Aula":id,
+                    "Materia":$("#materia").val(),
+                    "Data_prenotata": $("#date").val(), 
+                    "Ora_prenotata": $("#orario").val(),}];
+        //$("#booked_time").val();
+
+        //console.log(value);
+        
+    /*
+        "teacher": "<intger>",
+	"room": "<integer>",
+	"subject": "<integer>",
+	"booking_date": "<date>",
+	"booking_time": "<time>"
+    */
+        var form = new FormData();
+        form.append("teacher", value[0].Docente);
+        form.append("room", value[0].Aula);
+        form.append("subject", value[0].Materia);
+        form.append("booking_date", value[0].Data_prenotata);
+        form.append("booking_time", value[0].Ora_prenotata);
+        var jsonform={"teacher":value[0].Docente,
+	                    "room": value[0].Aula,
+	                    "subject": value[0].Materia,
+	                    "booking_date": value[0].Data_prenotata,
+	                    "booking_time": value[0].Ora_prenotata};
+        console.log(value[0]);
+        //var form = $("#myFrom").serializeArray();
+        console.log('form:'+JSON.stringify(form));
+        var f = JSON.stringify($("#myForm").formToJson());
+        
+    
+        var settings2 = {
+            "url": "http://localhost:8000/api/teachers_bookings",
+            "method": "POST",
+            "headers": {
+                "Accept":"application/json",
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify(jsonform)
+        };
+
+        $.ajax(settings2).done(function (response) {
+        console.log('response'+response);
+        });
+    }
+
+</script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aule</title>
+</head>
+<body>
+    <center>
+        <font size=22 color="red">Dettagli aula</font>
+            <table id="table" border=1 align="center">
+                <tr>
+                    <td>Codice Aula</td>
+                    <td>Descrizione</td>
+                    <td>Indirizzo</td>
+                    <td>Edificio</td>
+                    <td>Piano</td>
+                    <td>Numero posti</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+<!-- Prenotazione aula-->
+            <form action="ok.html" id="myForm" method="POST" onsubmit="subfunc(); ">
+                <table>
+                    <tr>
+                        <td>Materia</td>
+                        <td>
+                            <select id="materia" name="materia">
+                                <option value="Seleziona materia" selected></option>
+                                <option value="1">Ingegneria del software</option>
+                                <option value="5">Advance Software Engineering</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seleziona una data
+                        </td>
+                        <td>
+                            <input type="date" id="date" name="date">
+                        </td>
+                        
+                    </tr>
+                        <td>
+                            Seleziona una fascia oraria:
+                        </td>
+                        <td>
+                            <select id="orario" name="orario">
+                                <option value="Seleziona una fascia oraria" selected></option>
+                                <option value="8:30:00">8:30-10:30</option>
+                                <option value="9:30:00">9:30-11:30</option>
+                                <option value="10:30:00">10:30-12:30</option>
+                                <option value="11:30:00">11:30-13:30</option>
+                                <option value="12:30:00">12:30-13:30</option>
+                                <option value="14:30:00">14:30-16:30</option>
+                                <option value="16:30:00">16:30-18:30</option>
+                                <option value="18:30:00">18:30-19:30</option>
+                            </select>
+                        </td>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Prenota"></td>
+                    </tr>
+                </table>
+            </form>
+
+    </center>
+</body>
+</html>

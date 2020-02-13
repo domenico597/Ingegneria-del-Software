@@ -1,0 +1,62 @@
+<script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
+</script>
+
+<script>
+
+    
+    $(document).ready(function() {
+        var settings = {
+            "url": "http://localhost:8000/api/departments",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            "datatype": "json"
+        };
+        $.ajax(settings).done(function (response) {
+            var jsonObj = JSON.parse(response);
+            console.log(jsonObj);
+            jsonObj.forEach(element => {
+                $("#lista").append(
+                        "<option value=\""+element.Dipartimento+"\">"+element.Nome+"</option>"
+                );    
+            });
+        });
+    });
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selezione dipartimento</title>
+</head>
+<body>
+    <center>
+        <font size=22 color="red">
+            Seleziona un dipartimento
+        </font>
+        <form action="Aule1.html" method="GET">
+        <table border=0 >
+            <tr>
+                <td>
+                    Seleziona il dipartimento:
+                </td>
+                <td>
+                    <select name="dipartimento" id="lista">
+                        <option selected="selected" value="0">Seleziona un dipartimento </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="reset"></td>
+                <td><input type="submit" value="selezionato"></td>
+            </tr>
+        </table>
+    </form>
+    </center>
+</body>
+</html>
